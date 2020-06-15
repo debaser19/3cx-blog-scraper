@@ -2,11 +2,15 @@ from selenium import webdriver
 from wordpress_xmlrpc import Client
 from wordpress_xmlrpc import WordPressPost
 from wordpress_xmlrpc.methods import posts
+import os
 import creds
 
 def grabLatestPost():
     # define webdriver and blog url
-    DRIVER_PATH = 'chromedriver.exe'
+    if os.name == 'nt':
+        DRIVER_PATH = '.\\driver\\chromedriver.exe'
+    else:
+        DRIVER_PATH = './driver/chromedriver'
     driver = webdriver.Chrome(executable_path=DRIVER_PATH)
     driver.get('https://3cx.com/blog')
 
